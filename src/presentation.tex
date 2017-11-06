@@ -57,54 +57,52 @@
 
 \graphicspath{{../img/}}
 
-\title{Autotuning High-Level Synthesis for FPGAs using LegUp and OpenTuner}
+\title{Autotuning High-Level Synthesis for FPGAs \\ using OpenTuner and LegUp}
 \author{\footnotesize Pedro Bruel {\scriptsize (\emph{phrb@ime.usp.br})} \\
 \footnotesize Alfredo Goldman {\scriptsize (\emph{gold@ime.usp.br})} \\
 \footnotesize Sai Rahul Chalamalasetti {\scriptsize (\emph{gold@ime.usp.br})} \\
 \footnotesize Dejan Milojicic {\scriptsize (\emph{gold@ime.usp.br})}}
-\institute{\includegraphics[height=1.8cm]{imelogo}\\[0.2cm] \emph{Institute of Mathematics and Statistics \\ University of São Paulo} \\[.2cm]  \hspace{.5cm} \includegraphics[height=.5cm]{cnpqlogo} \hspace{.5cm} \includegraphics[height=.75cm]{capeslogo_} \hspace{.5cm} \includegraphics[height=.5cm]{hpelogo}}
-\date{\scriptsize \today}
+\institute{\includegraphics[height=1.8cm]{imelogo}\\[0.2cm] \emph{Institute of Mathematics and Statistics \\ University of São Paulo} \\[.2cm]  \hspace{.5cm} \includegraphics[height=.5cm]{cnpqlogo} \hspace{.5cm} \includegraphics[height=.75cm]{capeslogo_} \hspace{.5cm} \includegraphics[height=.58cm]{hpelogo}}
+\date{\scriptsize ReConFig, December 5, 2017}
 
 \begin{document}
 
 \maketitle
 
-\part{Part I}
+\section*{Introduction}
 
-\section{Introduction}
+\subsection*{About}
 
-\subsection{About}
+%\begin{frame}
+%    \frametitle{About}
+%    \begin{columns}[T,onlytextwidth]
+%        \column{0.5\textwidth}
+%        \begin{center}
+%            \includegraphics[width=.45\textwidth]{pedro}
+%
+%            Pedro Bruel \\
+%            \emph{\alert{phrb}@ime.usp.br} \\[.3cm]
+%            \url{www.ime.usp.br/~phrb} \\
+%            \url{github.com/phrb} \\
+%        \end{center}
+%
+%        \column{0.5\textwidth}
+%        \begin{center}
+%            \includegraphics[width=.4\textwidth]{alfredo}
+%
+%            Alfredo Goldman \\
+%            \emph{\alert{gold}@ime.usp.br} \\[.3cm]
+%            \url{www.ime.usp.br/~gold} \\
+%        \end{center}
+%    \end{columns}
+%\end{frame}
 
-\begin{frame}
-    \frametitle{About}
-    \begin{columns}[T,onlytextwidth]
-        \column{0.5\textwidth}
-        \begin{center}
-            \includegraphics[width=.45\textwidth]{pedro}
-
-            Pedro Bruel \\
-            \emph{\alert{phrb}@ime.usp.br} \\[.3cm]
-            \url{www.ime.usp.br/~phrb} \\
-            \url{github.com/phrb} \\
-        \end{center}
-
-        \column{0.5\textwidth}
-        \begin{center}
-            \includegraphics[width=.4\textwidth]{alfredo}
-
-            Alfredo Goldman \\
-            \emph{\alert{gold}@ime.usp.br} \\[.3cm]
-            \url{www.ime.usp.br/~gold} \\
-        \end{center}
-    \end{columns}
-\end{frame}
-
-\subsection{Index}
+\subsection*{Index}
 
 \begin{frame}
     \frametitle{Index}
     \setbeamertemplate{section in toc}[sections numbered]
-    \tableofcontents[hideallsubsections, part=1]
+    \tableofcontents[hideallsubsections]
 \end{frame}
 
 \begin{frame}
