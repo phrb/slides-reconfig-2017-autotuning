@@ -57,9 +57,9 @@
 
 \graphicspath{{../img/}}
 
-\title{Autotuning High-Level Synthesis for FPGAs \\ using OpenTuner and LegUp}
+\title{Autotuning HLS for FPGAs using OpenTuner and LegUp}
 \author{\footnotesize Pedro Bruel {\scriptsize (\emph{phrb@ime.usp.br})} \\
-\footnotesize Alfredo Goldman {\scriptsize (\emph{gold@ime.usp.br})} \\
+\footnotesize \textbf{Alfredo Goldman} {\scriptsize (\textbf{\emph{gold@ime.usp.br}})} \\
 \footnotesize Sai Rahul Chalamalasetti {\scriptsize (\emph{gold@ime.usp.br})} \\
 \footnotesize Dejan Milojicic {\scriptsize (\emph{gold@ime.usp.br})}}
 \institute{\includegraphics[height=1.8cm]{imelogo}\\[0.2cm] \emph{Institute of Mathematics and Statistics \\ University of São Paulo} \\[.2cm]  \hspace{.5cm} \includegraphics[height=.5cm]{cnpqlogo} \hspace{.5cm} \includegraphics[height=.75cm]{capeslogo_} \hspace{.5cm} \includegraphics[height=.58cm]{hpelogo}}
@@ -108,47 +108,82 @@
 \begin{frame}
     \frametitle{Slides}
     \begin{center}
-        \includegraphics[width=.18\textwidth]{github}
+        \includegraphics[width=.14\textwidth]{github}
     \end{center}
     The slides and all source code are hosted at \alert{GitHub}:
 
     \begin{itemize}
-        \item \url{github.com/phrb/---}
+        \item \url{github.com/phrb/legup-tuner}
+        \item \url{github.com/phrb/slides-reconfig-2017-autotuning}
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{Sample Code}
-    \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
-    #include <cuda_runtime.h>
+\section{FPGAs, HLS \& Autotuning}
 
-    float *h_A = (float *) malloc(size);
-    if (h_A == NULL) { ... };
+\begin{frame}
+    \frametitle{FPGAs}
+    \begin{block}{Why use FPGAs?}
+    \end{block}
+\end{frame}
 
-    float *d_A = NULL;
-    err = cudaMalloc((void **) &d_A, size);
-    err = cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice);
-    if (err != cudaSuccess) { ... };
+\begin{frame}
+    \frametitle{FPGAs: High-Level Synthesis}
+    \begin{block}{Why use High-Level Synthesis?}
+    \end{block}
+\end{frame}
 
-    int threadsPerBlock = 256;
-    int blocksPerGrid = (numElements + threadsPerBlock - 1) / threadsPerBlock;
+\begin{frame}
+    \frametitle{FPGAs: Autotuning}
+    \begin{block}{Why use autotuning for HLS?}
+    \end{block}
+\end{frame}
 
-    vectorAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, numElements);
+\section{Background}
 
-    err = cudaGetLastError();
-    err = cudaDeviceSynchronize();
-    if (err != cudaSuccess) { ... };
+\begin{frame}
+    \frametitle{Autotuning LLVM for HLS}
+    \begin{block}{Compare with Huang's work}
+    \end{block}
+\end{frame}
 
-    err = cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
-    err = cudaFree(d_A);
-    if (err != cudaSuccess) { ... };
-    \end{lstlisting}
+\begin{frame}
+    \frametitle{Autotuning Industry Designs for VTR}
+    \begin{block}{Describe Xu's work with OpenTuner}
+    \end{block}
+\end{frame}
 
-    \vfill
+\section{Experiments \& Results}
 
-    \begin{center}
-        \tiny{Fonte: \url{github.com/phrb/intro-cuda} [Accessed in 29/07/16]}
-    \end{center}
+\begin{frame}
+    \frametitle{Benchmark and Hardware Metrics}
+    \begin{block}{Describe CHStone and Metric Composition Strategy}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Weighted Optimization Scenarios}
+    \begin{block}{Describe the four scenarios}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Results}
+    \begin{block}{Present the heatmaps for each optimization scenario}
+    \end{block}
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}
+    \frametitle{Limitations of this Work}
+    \begin{block}{Discuss the issues with the weighted cost function}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Future Work}
+    \begin{block}{Discuss all future work topics}
+    \end{block}
 \end{frame}
 
 \maketitle
