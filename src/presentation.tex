@@ -113,8 +113,8 @@
     The slides and all source code are hosted at \alert{GitHub}:
 
     \begin{itemize}
-        \item \url{github.com/phrb/legup-tuner}
-        \item \url{github.com/phrb/slides-reconfig-2017-autotuning}
+        \item \alert{Code \& Data}: \url{github.com/phrb/legup-tuner}
+        \item \alert{Slides}: \url{github.com/phrb/slides-reconfig-2017-autotuning}
     \end{itemize}
 \end{frame}
 
@@ -122,13 +122,90 @@
 
 \begin{frame}
     \frametitle{FPGAs}
-    \begin{block}{Why use FPGAs?}
+    \begin{columns}[c,onlytextwidth]
+        \column{0.55\textwidth}
+        \begin{block}{FPGAs:}
+        \begin{itemize}
+            \item \alert{Logic Blocks} and \alert{Interconnections}
+            \item \alert{Reconfigurable}
+        \end{itemize}
+        \end{block}
+
+        \begin{block}{Tradeoff:}
+        \begin{itemize}
+            \item \alert{Energy Efficiency} and \alert{Performance}
+            \item \alert{Programmability}
+        \end{itemize}
+        \end{block}
+
+        \column{0.45\textwidth}
+        \begin{center}
+            \includegraphics[width=.9\textwidth]{fpga}
+        \end{center}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{FPGAs}
+    \begin{block}{Using FPGAs in \alert{Bing}:}
+    \begin{center}
+        \includegraphics[width=.7\textwidth]{fpga_bing}
+
+        \scriptsize{Image:
+        \url{enterprisetech.com/2014/09/03/microsoft-using-fpgas-speed-bing-search/}
+        [Accessed in 27/11/17]}
+    \end{center}
     \end{block}
 \end{frame}
 
 \begin{frame}
     \frametitle{FPGAs: High-Level Synthesis}
-    \begin{block}{Why use High-Level Synthesis?}
+    \begin{block}{\alert{LegUp} HLS flow:}
+    \begin{center}
+        \includegraphics[width=.6\textwidth]{legup_flow}
+
+        \scriptsize{Image: Canis, Andrew Christopher. LegUp: Open-Source
+        High-Level Synthesis Research Framework. Diss. University of Toronto,
+        2015.}
+    \end{center}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{FPGAs: High-Level Synthesis}
+    \begin{block}{HLS can generate \alert{lower-latency applications}:}
+    \begin{center}
+        \includegraphics[width=.6\textwidth]{hls_latency}
+
+        \scriptsize{Image: Karras, Kimon, Michaela Blott, and Kees Vissers.
+        "High-Level Synthesis Case Study: Implementation of a Memcached
+        Server." arXiv preprint arXiv:1408.5387 (2014).}
+    \end{center}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{FPGAs: High-Level Synthesis}
+    \begin{block}{\alert{Qualitatively}, with \alert{less effort}:}
+    \begin{center}
+        \includegraphics[width=.7\textwidth]{hls_loweffort}
+
+        \scriptsize{Image: Blott, Michaela, et al. "Achieving 10Gbps line-rate
+        key-value stores with FPGAs." Presented as part of the 5th USENIX
+        Workshop on Hot Topics in Cloud Computing. 2013.}
+    \end{center}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{FPGAs: High-Level Synthesis}
+    \begin{block}{This is an \alert{old issue}:}
+    \begin{center}
+        \includegraphics[width=.74\textwidth]{tradeoff_software}
+
+        \scriptsize{Image: Smith, Steven W. "The scientist and engineer's guide
+        to digital signal processing." 1997}
+    \end{center}
     \end{block}
 \end{frame}
 
