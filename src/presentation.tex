@@ -1,4 +1,4 @@
-\documentclass[10pt, compress, aspectratio=169]{beamer}
+\documentclass[10pt, compress, xcolor={table,xcdraw}, aspectratio=169]{beamer}
 
 \usetheme[numbering=fraction, progressbar=none, titleformat=smallcaps, sectionpage=none]{metropolis}
 
@@ -239,8 +239,38 @@
 
 \begin{frame}
     \frametitle{Weighted Optimization Scenarios}
-    \begin{block}{Describe the four scenarios}
+    \begin{block}{An \alert{Optimization Scenario} consists of:}
+        \begin{itemize}
+            \item An \alert{optimization objective}: \alert{performance}, \alert{area}, $\dots$
+            \item \alert{Weights} for \alert{hardware metrics}
+        \end{itemize}
     \end{block}
+
+    \begin{block}{Our scenarios:}
+        \begin{itemize}
+            \item 3 \alert{specific} scenarios \& 1 \alert{balanced} scenario
+            \item Weights: \alert{powers of two} from 1: \alert{irrelevant} to
+                8: \alert{high}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Weighted Optimization Scenarios}
+        \begin{table}[htpb]
+            \caption{\alert{Weights} for \alert{Optimization Scenarios} (\alert{High} $= 8$, \alert{Medium} $= 4$, \alert{Low} $= 2$)}
+            \centering
+            \begin{tabular}{@{}lcccc@{}}
+                \toprule
+                Metric & \textit{Area} & \textit{Perf. \& Lat} & \textit{Performance} & \textit{Balanced} \\ \midrule
+                \textit{LUT} & \cellcolor[HTML]{9B94B6} High & \cellcolor[HTML]{DD9583} Low & \cellcolor[HTML]{DD9583} Low & \cellcolor[HTML]{E3DBB3} Medium \\
+                \textit{Registers} & \cellcolor[HTML]{9B94B6} High & \cellcolor[HTML]{9B94B6} High & \cellcolor[HTML]{E3DBB3} Medium & \cellcolor[HTML]{E3DBB3} Medium \\
+                \textit{BRAMs} & \cellcolor[HTML]{9B94B6} High & \cellcolor[HTML]{DD9583} Low & \cellcolor[HTML]{DD9583} Low & \cellcolor[HTML]{E3DBB3} Medium \\
+                \textit{DSPs} & \cellcolor[HTML]{9B94B6} High & \cellcolor[HTML]{DD9583} Low & \cellcolor[HTML]{DD9583} Low & \cellcolor[HTML]{E3DBB3} Medium \\
+                \textit{FMax} & \cellcolor[HTML]{DD9583} Low & \cellcolor[HTML]{9B94B6} High & \cellcolor[HTML]{9B94B6} High & \cellcolor[HTML]{E3DBB3} Medium \\
+                \textit{Cycles} & \cellcolor[HTML]{DD9583} Low & \cellcolor[HTML]{9B94B6} High & \cellcolor[HTML]{DD9583} Low & \cellcolor[HTML]{E3DBB3} Medium \\ \bottomrule
+            \end{tabular}
+        \end{table}
 \end{frame}
 
 \begin{frame}
