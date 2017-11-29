@@ -1,4 +1,4 @@
-\documentclass[10pt, compress, xcolor={table,xcdraw}, aspectratio=169]{beamer}
+\documentclass[10pt, compress, xcolor={table,xcdraw,usenames}, aspectratio=169]{beamer}
 
 \usetheme[numbering=fraction, progressbar=none, titleformat=smallcaps, sectionpage=none]{metropolis}
 
@@ -233,7 +233,34 @@
 
 \begin{frame}
     \frametitle{Benchmark and Hardware Metrics}
-    \begin{block}{Describe CHStone and Metric Composition Strategy}
+    \begin{block}{\alert{Metric composition} problem:}
+        \begin{itemize}
+            \item \alert{8 hardware metrics} obtained from Quartus
+            \item But the autotuner optimizes \alert{a single value}
+        \end{itemize}
+    \end{block}
+
+    \pause
+
+    \begin{block}{Our \alert{solution} so far:}
+        \begin{itemize}
+            \item \alert{Normalize} metrics using initial values
+            \item Optimize the \alert{normalized sum} of the 8 metrics
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Benchmark and Hardware Metrics}
+    \begin{block}{\alert{Normalized sum} of metrics:}
+        \begin{align*} \label{eq:wnsm}
+            \mathlarger{f(M, W)} = \frac{\mathlarger{\mathlarger{\mathlarger{\sum}}}\limits_{\substack{m_i \in M \\ w_i \in W}}{w_i\left(\dfrac{m_i}{m_{i}^{0}}\right)}}{\mathlarger{\mathlarger{\mathlarger{\sum}}}\limits_{w_i \in W}{w_i}}
+        \end{align*}
+
+        \begin{center}
+            Where $M$ is the set of \alert{hardware metrics} and $W$ is the set
+            of \alert{weights}
+        \end{center}
     \end{block}
 \end{frame}
 
@@ -245,6 +272,8 @@
             \item \alert{Weights} for \alert{hardware metrics}
         \end{itemize}
     \end{block}
+
+    \pause
 
     \begin{block}{Our scenarios:}
         \begin{itemize}
@@ -274,12 +303,112 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Results}
-    \begin{block}{Present the heatmaps for each optimization scenario}
+    \frametitle{Experiments}
+    \begin{block}{Experiments}
+        \begin{itemize}
+            \item We performed 10 \alert{autotuning runs for each scenario}
+            \item Each run took \alert{1.5 hours}
+            \item We kept track of \alert{how each hardware metric changed over
+                time}
+            \item We used the \alert{Weighted Normalized Sum} (\alert{WNS}) as
+                \alert{autotuning objective}
+        \end{itemize}
     \end{block}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Results}
+    \begin{block}{Presentation of results for each scenario:}
+        \begin{itemize}
+            \item \alert{Mean of the relative changes}, over 10 tuning runs
+            \item For each \alert{hardware metric}, and for \alert{WNS}
+            \item For each \alert{CHStone application}
+            \item \alert{Bluer} is always better than \textcolor{red}{Redder}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Results: Comparing Default \& Random Starts}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\columnwidth]{heatmap_comp_stratixV}
+        \caption{Comparison of the absolute values for Random and Default
+        starting points in the Balanced scenario}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Results: the Balanced Scenario}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV}
+        \caption{Relative improvement for all metrics in the \textit{Balanced}
+        scenario}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Results: the Area Scenario}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV_area}
+        \caption{Relative improvement for all metrics in the \textit{Area}
+        scenario}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Results: the Performance Scenario}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV_perf}
+        \caption{Relative improvement for all metrics in the
+        \textit{Performance} scenario}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Results: the Performance \& Latency Scenario}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV_perflat}
+        \caption{Relative improvement for all metrics in the
+        \textit{Performance \& Latency} scenario}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Results: Comparing the Weighted Normalized Sum (WNS)}
+    \begin{figure}[htpb]
+        \centering
+        \includegraphics[width=0.8\columnwidth]{heatmap_wns_comparison}
+        \caption{Relative improvement for \textbf{WNS} in all scenarios}
+    \end{figure}
+\end{frame}
+
 \section{Conclusion}
+
+\begin{frame}
+    \frametitle{Results: Conclusion}
+    \begin{block}{In all scenarios:}
+        \begin{itemize}
+            \item Heavily weighted metrics \alert{improved the most}
+            \item Lightly weighted or irrelevant metrics \alert{did not worsen
+                greatly}
+        \end{itemize}
+    \end{block}
+
+    \pause
+
+    \begin{block}{Autotuning starting point:}
+        \begin{itemize}
+            \item A random start \alert{might achieve more relative
+                improvement}
+            \item But a sensible start \alert{achieves better absolute values}
+        \end{itemize}
+    \end{block}
+\end{frame}
 
 \begin{frame}
     \frametitle{Limitations of this Work}
