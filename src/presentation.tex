@@ -160,19 +160,6 @@
 
 \begin{frame}
     \frametitle{FPGAs: High-Level Synthesis}
-    \begin{block}{\alert{LegUp} HLS flow:}
-    \begin{center}
-        \includegraphics[width=.6\textwidth]{legup_flow}
-
-        \scriptsize{Image: Canis, Andrew Christopher. LegUp: Open-Source
-        High-Level Synthesis Research Framework. Diss. University of Toronto,
-        2015.}
-    \end{center}
-    \end{block}
-\end{frame}
-
-\begin{frame}
-    \frametitle{FPGAs: High-Level Synthesis}
     \begin{block}{HLS can generate \alert{lower-latency applications}:}
     \begin{center}
         \includegraphics[width=.6\textwidth]{hls_latency}
@@ -210,29 +197,117 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{FPGAs: Autotuning}
-    \begin{block}{Why use autotuning for HLS?}
+    \frametitle{FPGAs: High-Level Synthesis}
+    \begin{block}{\alert{LegUp} HLS flow:}
+    \begin{center}
+        \includegraphics[width=.6\textwidth]{legup_flow}
+
+        \scriptsize{Image: Canis, Andrew Christopher. LegUp: Open-Source
+        High-Level Synthesis Research Framework. Diss. University of Toronto,
+        2015.}
+    \end{center}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{FPGAs: Autotuning for High-Level Synthesis}
+    \begin{block}{Why use \alert{autotuning for HLS?}}
+        \begin{itemize}
+            \item HLS aims to \alert{ease FPGA programming for software engineers}
+            \item But \alert{configuring HLS requires FPGA programming knowledge}
+            \item \alert{Autotuning can help software engineers use HLS}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{FPGAs: Autotuning for High-Level Synthesis}
+    \begin{block}{Our HLS \alert{compilation flow}:}
+    \begin{center}
+        \includegraphics[width=.9\textwidth]{fpga-stack}
+    \end{center}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{FPGAs: Autotuning for High-Level Synthesis}
+    \begin{block}{Our \alert{autotuner setup}:}
+    \begin{center}
+        \includegraphics[width=.65\textwidth]{fpga_docker_tuner}
+    \end{center}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{FPGAs: Autotuning for High-Level Synthesis}
+    \begin{block}{Our HLS \alert{autotuning workflow}:}
+    \begin{center}
+        \includegraphics[width=.65\textwidth]{overview_fpgas_small}
+    \end{center}
     \end{block}
 \end{frame}
 
 \section{Background}
 
 \begin{frame}
-    \frametitle{Autotuning LLVM for HLS}
-    \begin{block}{Compare with Huang's work}
-    \end{block}
+    \frametitle{Related Work: Autotuning LLVM Passes for HLS}
+        \alert{Huang, Qijing, \emph{et al.}}, \emph{"The effect of compiler
+        optimizations on high-level synthesis-generated hardware." ACM
+        Transactions on Reconfigurable Technology and Systems (2015)}:
+
+    \begin{itemize}
+        \item Optimizes \alert{parameters \& ordering} of a \alert{subset of
+            LLVM passes}
+        \item Uses \alert{LegUp} as an HLS tool
+        \item Targets the \alert{Cyclone II} device family
+        \item Uses the \alert{CHStone benchmark}
+        \item Performs \alert{Exhaustive Search}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Autotuning Industry Designs for VTR}
-    \begin{block}{Describe Xu's work with OpenTuner}
-    \end{block}
+    \frametitle{Related Work: Autotuning Industry Designs for VTR}
+        \alert{Xu \emph{et al.}}, \emph{"A Parallel Bandit-Based Approach
+        for Autotuning FPGA Compilation." FPGA (2017)}:
+        \begin{itemize}
+            \item \alert{Does not optimize HLS}
+            \item Optimizes \alert{parameters} of the
+                \alert{Verilog-to-Routing} (\alert{VTR}) FPGA compilation tool
+            \item Uses \alert{distributed OpenTuner instances}
+        \end{itemize}
 \end{frame}
 
 \section{Experiments \& Results}
 
 \begin{frame}
-    \frametitle{Benchmark and Hardware Metrics}
+    \frametitle{High-Level Synthesis Benchmark}
+    \begin{block}{C-based High-Level Synthesis \alert{benchmark}
+        (\alert{CHStone}):}
+        \begin{table}[htpb]
+            \footnotesize
+            \caption{Autotuned CHStone Applications}
+            \centering
+            \begin{tabular}{@{}p{0.1\columnwidth}p{0.5\columnwidth}@{}}
+                \toprule
+                Application & Short Description \\ \midrule
+                blowfish & Symmetric-key block cypher \\
+                aes & Advanced Encryption Algorithm (AES) \\
+                adpcm & Adaptive Differential Pulse Code Modulation dec. and enc. \\
+                sha & Secure Hash Algorithm (SHA) \\
+                motion & Motion vector decoding from MPEG-2 \\
+                mips & Simplified MIPS processor \\
+                gsm & Predictive coding analysis of systems for mobile comms. \\
+                dfsin & Sine function for double-precision floating-point numbers \\
+                dfmul & Double-precision floating-point multiplication \\
+                dfdiv & Double-precision floating-point division \\
+                dfadd & Double-precision floating-point addition \\ \bottomrule
+            \end{tabular}
+        \end{table}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Hardware Metrics}
     \begin{block}{\alert{Metric composition} problem:}
         \begin{itemize}
             \item \alert{8 hardware metrics} obtained from Quartus
@@ -251,7 +326,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Benchmark and Hardware Metrics}
+    \frametitle{Hardware Metrics}
     \begin{block}{\alert{Normalized sum} of metrics:}
         \begin{align*} \label{eq:wnsm}
             \mathlarger{f(M, W)} = \frac{\mathlarger{\mathlarger{\mathlarger{\sum}}}\limits_{\substack{m_i \in M \\ w_i \in W}}{w_i\left(\dfrac{m_i}{m_{i}^{0}}\right)}}{\mathlarger{\mathlarger{\mathlarger{\sum}}}\limits_{w_i \in W}{w_i}}
@@ -412,13 +487,59 @@
 
 \begin{frame}
     \frametitle{Limitations of this Work}
-    \begin{block}{Discuss the issues with the weighted cost function}
+    \begin{block}{Issues with the \alert{Weighted Normalized Sum}:}
+        \begin{itemize}
+            \item The WNS is a \alert{very naive metric combination strategy}
+            \item The \alert{multi-objective optimization} domain provides
+                \alert{better approaches}
+        \end{itemize}
     \end{block}
 \end{frame}
 
 \begin{frame}
     \frametitle{Future Work}
-    \begin{block}{Discuss all future work topics}
+    \begin{block}{\alert{Bigger designs}:}
+        \begin{itemize}
+            \item CHStone \alert{designs are very simple}
+            \item We will use our autotuning approach for \alert{bigger FPGA
+                designs}
+        \end{itemize}
+    \end{block}
+
+    \pause
+
+    \begin{block}{\alert{Compiler configuration}:}
+        \begin{itemize}
+            \item HLS usually includes a C/C++ \alert{compiler step}
+            \item We will include \alert{compiler parameters or passes} in our
+                autotuner
+        \end{itemize}
+    \end{block}
+
+    \pause
+
+    \begin{block}{\alert{Other HLS tools}:}
+        \begin{itemize}
+            \item Other HLS tools provide \alert{different search spaces}
+            \item We will use our autotuning approach for more
+                \alert{proprietary and open HLS tools}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Conclusion}
+    \begin{block}{Autotuning HLS for FPGAs:}
+        \begin{itemize}
+            \item Designers can \alert{select optimization objectives using
+                weights}
+            \item Good \alert{WNS improvements} after \alert{1.5 hours} of
+                autotuning
+            \item Improvements for targeted metrics \alert{without worsening
+                other metrics}
+            \item A \alert{sensible starting point} impacts autotuning results
+                positively
+        \end{itemize}
     \end{block}
 \end{frame}
 
