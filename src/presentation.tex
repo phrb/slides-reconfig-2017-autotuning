@@ -198,6 +198,17 @@
 
 \begin{frame}
     \frametitle{FPGAs: High-Level Synthesis}
+    \alert{Schkufza \emph{et al.}}, "Stochastic program optimization."
+    Communications of the ACM 59.2 (2016):
+    
+    \begin{itemize}
+        \item Optimizing \alert{assembly instructions}
+        \item Using \alert{stochastic methods} to \alert{explore the design space}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{FPGAs: High-Level Synthesis}
     \begin{block}{\alert{LegUp} HLS flow:}
     \begin{center}
         \includegraphics[width=.6\textwidth]{legup_flow}
@@ -315,8 +326,6 @@
         \end{itemize}
     \end{block}
 
-    \pause
-
     \begin{block}{Our \alert{solution} so far:}
         \begin{itemize}
             \item \alert{Normalize} metrics using initial values
@@ -347,8 +356,6 @@
             \item \alert{Weights} for \alert{hardware metrics}
         \end{itemize}
     \end{block}
-
-    \pause
 
     \begin{block}{Our scenarios:}
         \begin{itemize}
@@ -405,52 +412,154 @@
 
 \begin{frame}
     \frametitle{Results: Comparing Default \& Random Starts}
-    \begin{figure}[htpb]
-        \centering
-        \includegraphics[width=0.8\columnwidth]{heatmap_comp_stratixV}
-        \caption{Comparison of the absolute values for Random and Default
-        starting points in the Balanced scenario}
-    \end{figure}
+    \begin{block}{Comparing \alert{Default} \& \alert{Random} starts:}
+        \begin{itemize}
+            \item A \alert{Default} start already provides a \alert{sensible
+                optimization}
+            \item A \alert{Random} start might favor the \alert{exploration of
+                new, unintuitive solutions}
+            \item In our case, the \alert{Default} start was provided to the
+                \alert{StratixV FPGA} by \alert{LegUp}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Results: Comparing Default \& Random Starts}
+        \begin{figure}[htpb]
+            \centering
+            \includegraphics[width=0.8\columnwidth]{heatmap_comp_stratixV}
+            \caption{Comparison of the absolute values for Random and Default
+            starting points in the Balanced scenario}
+        \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Results: Comparing Default \& Random Starts}
+    \begin{block}{Comparing \alert{Default} \& \alert{Random} starts:}
+        \begin{itemize}
+            \item The \alert{Default} start achieves \alert{better absolute
+                values} than the \alert{Random} start, on most cases
+            \item The next results were obtained using the \alert{Default}
+                start
+        \end{itemize}
+    \end{block}
 \end{frame}
 
 \begin{frame}
     \frametitle{Results: the Balanced Scenario}
-    \begin{figure}[htpb]
-        \centering
-        \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV}
-        \caption{Relative improvement for all metrics in the \textit{Balanced}
-        scenario}
-    \end{figure}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.2\textwidth}
+        \begin{table}[htpb]
+            \scriptsize
+            \centering
+            \begin{tabular}{@{}lcccc@{}}
+                \toprule
+                Metric & \textit{Balanced} \\ \midrule
+                \textit{LUT} & \cellcolor[HTML]{E3DBB3} Medium \\
+                \text   it{Registers} & \cellcolor[HTML]{E3DBB3} Medium \\
+                \textit{BRAMs} & \cellcolor[HTML]{E3DBB3} Medium \\
+                \textit{DSPs} & \cellcolor[HTML]{E3DBB3} Medium \\
+                \textit{FMax} & \cellcolor[HTML]{E3DBB3} Medium \\
+                \textit{Cycles} & \cellcolor[HTML]{E3DBB3} Medium \\ \bottomrule
+            \end{tabular}
+        \end{table}
+
+        \column{0.8\textwidth}
+        \begin{figure}[htpb]
+            \centering
+            \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV}
+            \caption{Relative improvement for all metrics in the \textit{Balanced}
+            scenario}
+        \end{figure}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{Results: the Area Scenario}
-    \begin{figure}[htpb]
-        \centering
-        \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV_area}
-        \caption{Relative improvement for all metrics in the \textit{Area}
-        scenario}
-    \end{figure}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.2\textwidth}
+        \begin{table}[htpb]
+            \scriptsize
+            \centering
+            \begin{tabular}{@{}lcccc@{}}
+                \toprule
+                Metric & \textit{Area} \\ \midrule
+                \textit{LUT} & \cellcolor[HTML]{9B94B6} High \\
+                \textit{Registers} & \cellcolor[HTML]{9B94B6} High \\
+                \textit{BRAMs} & \cellcolor[HTML]{9B94B6} High \\
+                \textit{DSPs} & \cellcolor[HTML]{9B94B6} High \\
+                \textit{FMax} & \cellcolor[HTML]{DD9583} Low \\
+                \textit{Cycles} & \cellcolor[HTML]{DD9583} Low \\ \bottomrule
+            \end{tabular}
+        \end{table}
+
+        \column{0.8\textwidth}
+        \begin{figure}[htpb]
+            \centering
+            \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV_area}
+            \caption{Relative improvement for all metrics in the \textit{Area}
+            scenario}
+        \end{figure}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{Results: the Performance Scenario}
-    \begin{figure}[htpb]
-        \centering
-        \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV_perf}
-        \caption{Relative improvement for all metrics in the
-        \textit{Performance} scenario}
-    \end{figure}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.2\textwidth}
+        \begin{table}[htpb]
+            \scriptsize
+            \centering
+            \begin{tabular}{@{}lcccc@{}}
+                \toprule
+                Metric & \textit{Performance} \\ \midrule
+                \textit{LUT} & \cellcolor[HTML]{DD9583} Low \\
+                \textit{Registers} & \cellcolor[HTML]{E3DBB3} Medium \\
+                \textit{BRAMs} & \cellcolor[HTML]{DD9583} Low \\
+                \textit{DSPs} & \cellcolor[HTML]{DD9583} Low \\
+                \textit{FMax} & \cellcolor[HTML]{9B94B6} High \\
+                \textit{Cycles} & \cellcolor[HTML]{DD9583} Low \\ \bottomrule
+            \end{tabular}
+        \end{table}
+
+        \column{0.8\textwidth}
+        \begin{figure}[htpb]
+            \centering
+            \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV_perf}
+            \caption{Relative improvement for all metrics in the
+            \textit{Performance} scenario}
+        \end{figure}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{Results: the Performance \& Latency Scenario}
-    \begin{figure}[htpb]
-        \centering
-        \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV_perflat}
-        \caption{Relative improvement for all metrics in the
-        \textit{Performance \& Latency} scenario}
-    \end{figure}
+    \begin{columns}[T,onlytextwidth]
+        \column{0.2\textwidth}
+        \begin{table}[htpb]
+            \scriptsize
+            \centering
+            \begin{tabular}{@{}lcccc@{}}
+                \toprule
+                Metric & \textit{Perf. \& Lat} \\ \midrule
+                \textit{LUT} & \cellcolor[HTML]{DD9583} Low \\
+                \textit{Registers} & \cellcolor[HTML]{9B94B6} High \\
+                \textit{BRAMs} & \cellcolor[HTML]{DD9583} Low \\
+                \textit{DSPs} & \cellcolor[HTML]{DD9583} Low \\
+                \textit{FMax} & \cellcolor[HTML]{9B94B6} High \\
+                \textit{Cycles} & \cellcolor[HTML]{9B94B6} High \\ \bottomrule
+            \end{tabular}
+        \end{table}
+
+        \column{0.8\textwidth}
+        \begin{figure}[htpb]
+            \centering
+            \includegraphics[width=0.8\columnwidth]{heatmap_default_stratixV_perflat}
+            \caption{Relative improvement for all metrics in the
+            \textit{Performance \& Latency} scenario}
+        \end{figure}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -473,8 +582,6 @@
                 greatly}
         \end{itemize}
     \end{block}
-
-    \pause
 
     \begin{block}{Autotuning starting point:}
         \begin{itemize}
@@ -506,8 +613,6 @@
         \end{itemize}
     \end{block}
 
-    \pause
-
     \begin{block}{\alert{Compiler configuration}:}
         \begin{itemize}
             \item HLS usually includes a C/C++ \alert{compiler step}
@@ -515,8 +620,6 @@
                 autotuner
         \end{itemize}
     \end{block}
-
-    \pause
 
     \begin{block}{\alert{Other HLS tools}:}
         \begin{itemize}
