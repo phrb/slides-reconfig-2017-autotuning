@@ -7,7 +7,7 @@
 \usepackage{multicol}
 \boldmath
 
-\usepackage[orientation=portrait,size=a1,scale=1.4]{beamerposter}
+\usepackage[orientation=portrait,size=a1,scale=1.8]{beamerposter}
 \usetheme{LLT-poster}
 \usecolortheme{ComingClean}
 
@@ -15,38 +15,35 @@
 \author[phrb@ime.usp.br]{Pedro Bruel and Alfredo Goldman}
 \institute{University of São Paulo, Brazil}
 \date{\today}
-\footimage{\includegraphics[height=5cm]{usp}}
+\footimage{\includegraphics[height=3cm]{usp}}
 
 \begin{document}
 \begin{frame}
 \begin{columns}[t]
     \begin{column}{.46\linewidth}
-        \begin{block}{\Large Autotuning with Cloud Computing}
+        \begin{block}{\Large Autotuning}
             \large
-            We modified OpenTuner to use Google Compute Engine (GCE) virtual machines as
-            measurement servers:
+            Autotuning casts the program optimization problem as a search
+            problem. Program optimization search spaces are usually very large,
+            complex, and difficult to explore by hand.  For example, consider
+            the problem of autotuning the CUDA compiler:
             \begin{figure}[htpb]
-                \includegraphics[width=0.45\linewidth]{high-level-implementation.eps}
-                \caption{A}
+                \includegraphics[width=0.84\linewidth]{overview_gpus}
             \end{figure}
         \end{block}
-        \begin{block}{\Large Autotuning using Julia}
+        \begin{block}{\Large NODAL: Distributed Autotuning using Julia}
             \large
+            We introduce NODAL, an Open Distributed Autotuning Library
+            in the Julia language.
             \begin{figure}[htpb]
-                \includegraphics[width=0.84\linewidth]{logo}
+                \includegraphics[width=0.7\linewidth]{logo}
             \end{figure}
+
             \begin{itemize}
-                \item \textbf{Testbed:} GTX-980, GTX-750, Tesla-K40
-                \item \textbf{Benchmark:} Rodinia, Vector Sum, Matrix Multiplication
-                \item \textbf{Autotuning Tools:} OpenTuner Autotuning Framework
-                \item \textbf{Fitness Value:} Mean of 30 executions
-            \end{itemize}
-        \end{block}
-        \begin{block}{\Large Autotuning High-Level Synthesis for FPGAs with LegUp}
-            \large
-            \begin{itemize}
-                \item \textbf{Testbed:} GTX-980, GTX-750, Tesla-K40
-                \item \textbf{Benchmark:} Rodinia, Vector Sum, Matrix Multiplication
+                \item \textbf{Domain-Agnostic:} Provides tools for representing
+                    problems in multiple domains
+                \item \textbf{Parallel \& Distributed:} Using Julia's interfaces,
+                    NODAL runs in parallel and distributed environments
                 \item \textbf{Autotuning Tools:} OpenTuner Autotuning Framework
                 \item \textbf{Fitness Value:} Mean of 30 executions
             \end{itemize}
