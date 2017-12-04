@@ -60,8 +60,8 @@
 \title{Autotuning HLS for FPGAs using OpenTuner and LegUp}
 \author{\footnotesize Pedro Bruel {\scriptsize (\emph{phrb@ime.usp.br})} \\
 \footnotesize \textbf{Alfredo Goldman} {\scriptsize (\textbf{\emph{gold@ime.usp.br}})} \\
-\footnotesize Sai Rahul Chalamalasetti {\scriptsize (\emph{gold@ime.usp.br})} \\
-\footnotesize Dejan Milojicic {\scriptsize (\emph{gold@ime.usp.br})}}
+\footnotesize Sai Rahul Chalamalasetti {\scriptsize (\emph{sairahul.chalamalasetti@hpe.com})} \\
+\footnotesize Dejan Milojicic {\scriptsize (\emph{dejan.milojicic@hpe.com})}}
 \institute{\includegraphics[height=1.8cm]{imelogo}\\[0.2cm] \emph{Institute of Mathematics and Statistics \\ University of São Paulo} \\[.2cm]  \hspace{.5cm} \includegraphics[height=.5cm]{cnpqlogo} \hspace{.5cm} \includegraphics[height=.75cm]{capeslogo_} \hspace{.5cm} \includegraphics[height=.58cm]{hpelogo}}
 \date{\scriptsize ReConFig, December 5, 2017}
 
@@ -97,10 +97,10 @@
 %    \end{columns}
 %\end{frame}
 
-\subsection*{Index}
+\subsection*{Outline}
 
 \begin{frame}
-    \frametitle{Index}
+    \frametitle{Outline}
     \setbeamertemplate{section in toc}[sections numbered]
     \tableofcontents[hideallsubsections]
 \end{frame}
@@ -200,7 +200,7 @@
     \frametitle{FPGAs: High-Level Synthesis}
     \alert{Schkufza \emph{et al.}}, "Stochastic program optimization."
     Communications of the ACM 59.2 (2016):
-    
+
     \begin{itemize}
         \item Optimizing \alert{assembly instructions}
         \item Using \alert{stochastic methods} to \alert{explore the design space}
@@ -626,6 +626,8 @@
             \item Other HLS tools provide \alert{different search spaces}
             \item We will use our autotuning approach for more
                 \alert{proprietary and open HLS tools}
+            \item We want to use cost models that \alert{predict hardware
+                metrics before synthesis}
         \end{itemize}
     \end{block}
 \end{frame}
